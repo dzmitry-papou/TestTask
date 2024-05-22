@@ -1,18 +1,30 @@
-# Salesforce DX Project: Next Steps
+# Twistellar Test Task - Salesforce Development
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This repository contains the solution for the Twistellar Test Task completed by Dzmitry Papou in a Salesforce development org.
 
-## How Do You Plan to Deploy Your Changes?
+## Task Description
+The Twistellar Test Task details can be found in the [Twistellar Test Task Document](https://docs.google.com/document/d/1gdiqE0H7vWkOQKBbGapmfYwaMkAM99MAjdkZK2Bkzts/edit).
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## Salesforce Org Details
+- Home Tab of Sales App: [Home Tab Link](https://farmden-dev-ed.develop.lightning.force.com/lightning/page/home)
+- Last Week Cases PDF Tab of Sales App: [Last Week Cases PDF Tab Link](https://farmden-dev-ed.develop.lightning.force.com/lightning/n/Last_Week_Cases_PDF)
 
-## Configure Your Salesforce DX Project
+### Credentials
+#### System Administrator:
+- Login: d.papou@farm.den
+- Password: NigraeBovis327
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+#### Standard User:
+- Login: popownt8@gmail.com
+- Password: NigraeBovis327
 
-## Read All About It
+#### Standard Platform User:
+- Login: popowdp@gmail.com
+- Password: NigraeBovis327
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+## Repository Structure
+The repository contains the Salesforce Apex classes, Lightning components, and any other relevant files related to the Twistellar Test Task solution.
+
+Feel free to explore the code and documentation provided.
+
+Thank you for reviewing this project!
