@@ -1,0 +1,118 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span>Case Queue</span>
+                    </h2>
+                </div>
+                <div class="slds-no-flex">
+                    <lightning-icon icon-name="action:refresh" alternative-text="Refresh" title="Refresh" onclick={updateTable}></lightning-icon>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+
+            <div class="slds-box slds-p-horizontal_medium">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-12 slds-grid" >
+                        <div class="slds-p-horizontal_medium slds-size_1-of-1 ">
+                            <div class="slds-text-align_center">
+                                #
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="slds-col slds-size_11-of-12 slds-grid">
+                        <div class="slds-p-horizontal_medium slds-size_1-of-5">
+                            <div class="slds-text-align_center">
+                                Case Number
+                            </div>
+                        </div>
+                        <div class="slds-p-horizontal_medium slds-size_1-of-5">
+                            <div class="slds-text-align_center">
+                                Assignee
+                            </div>
+                        </div>
+                        <div class="slds-p-horizontal_medium slds-size_1-of-5">
+                            <div class="slds-text-align_center">
+                                Status
+                            </div>
+                        </div>
+                        <div class="slds-p-horizontal_medium slds-size_1-of-5">
+                            <div class="slds-text-align_center">
+                                Priority
+                            </div>
+                        </div>
+                        <div class="slds-p-horizontal_medium slds-size_1-of-5">
+                            <div class="slds-text-align_center">
+                                Origin
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <template lwc:if={isLoaded}>
+                <ul class="slds-box slds-m-top_medium slds-p-horizontal_medium">
+                    <template for:each={cases} for:item="item">
+                        <li key={item.Id}>
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-12 slds-grid" >
+                                    <div class="slds-p-around_medium slds-size_1-of-1 ">
+                                        <div class="slds-box slds-box_x-small slds-text-align_center">
+                                            {item.Number}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_11-of-12 slds-grid">
+                                    <div class="slds-p-around_medium slds-size_1-of-5">
+                                        <div class="slds-box slds-box_x-small slds-text-align_center">
+                                            <a data-id={item.Id} onclick={viewRecord}>{item.CaseNumber}</a>
+                                        </div>
+                                    </div>
+                                    <div class="slds-p-around_medium slds-size_1-of-5">
+                                        <div class="slds-box slds-box_x-small slds-text-align_center">
+                                            {item.Owner.Name}
+                                        </div>
+                                    </div>
+                                    <div class="slds-p-around_medium slds-size_1-of-5">
+                                        <div class="slds-text-align_center slds-m-top_none">
+                                            <lightning-combobox
+                                                variant="label-hidden"
+                                                name="status"
+                                                value={item.Status}
+                                                options={options}
+                                                data-id={item.Id} 
+                                                onchange={changeStatus}
+                                                class="" ></lightning-combobox>
+                                        </div>
+                                    </div>
+                                    <div class="slds-p-around_medium slds-size_1-of-5">
+                                        <div class="slds-box slds-box_x-small slds-text-align_center">
+                                            {item.Priority}
+                                        </div>
+                                    </div>
+                                    <div class="slds-p-around_medium slds-size_1-of-5">
+                                        <div class="slds-box slds-box_x-small slds-text-align_center">
+                                            {item.Origin}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template lwc:else>
+                <div class="exampleHolder">
+                    <lightning-spinner alternative-text="Loading" size="xx-small"></lightning-spinner>
+                </div>
+            </template>
+
+        </div>
+        
+    </article>
+    
+</template>
