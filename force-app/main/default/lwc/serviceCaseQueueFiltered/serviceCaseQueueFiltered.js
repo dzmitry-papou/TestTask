@@ -37,13 +37,7 @@ export default class ServiceCaseQueueFiltered extends NavigationMixin(LightningE
 
         const { error, data } = userCases;
         if (data) {
-            let casesWithNumeration = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = JSON.parse(JSON.stringify(data[index]));
-                element.Number = (index + 1).toString();
-                casesWithNumeration.push(element);
-            }
-            this.cases = casesWithNumeration;
+            this.cases = this.addNumberToData(data);
             this.casesLoaded = true;
             if (this.optionsLoaded && this.casesLoaded) {
                 this.isLoaded = true;
@@ -74,35 +68,17 @@ export default class ServiceCaseQueueFiltered extends NavigationMixin(LightningE
             .then((result) => {
                 getUserCasesNonCacheable()
                     .then(data => {
-                        let casesWithNumeration = [];
-                        for (let index = 0; index < data.length; index++) {
-                            const element = JSON.parse(JSON.stringify(data[index]));
-                            element.Number = (index + 1).toString();
-                            casesWithNumeration.push(element);
-                        }
-                        this.cases = casesWithNumeration;
+                        this.cases = this.addNumberToData(data);
                         refreshApex(this.cases);
                         this.isLoaded = true;
                     })
                     .catch(error => {
                         console.log(error);
                     })
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: "Success",
-                        message: "Case updated",
-                        variant: "success",
-                    }),
-                );
+                this.showCaseUpdatedToast();
             })
             .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: "Error updating record",
-                        message: error.body.message,
-                        variant: "error",
-                    }),
-                );
+                this.showErrorToast(error);
             });
     }
     
@@ -111,13 +87,7 @@ export default class ServiceCaseQueueFiltered extends NavigationMixin(LightningE
         this.isLoaded = false;
         await getUserCasesNonCacheable()
             .then((data) => {
-                let casesWithNumeration = [];
-                for (let index = 0; index < data.length; index++) {
-                    const element = JSON.parse(JSON.stringify(data[index]));
-                    element.Number = (index + 1).toString();
-                    casesWithNumeration.push(element);
-                }
-                this.cases = casesWithNumeration;
+                this.cases = this.addNumberToData(data);
                 refreshApex(this.cases);
                 this.isLoaded = true;
             })
@@ -125,4 +95,37 @@ export default class ServiceCaseQueueFiltered extends NavigationMixin(LightningE
                 console.log(error);
             });
     }
+
+    addNumberToData(data) {
+
+        let casesWithNumeration = [];
+        for (let index = 0; index < data.length; index++) {
+            const element = JSON.parse(JSON.stringify(data[index]));
+            element.Number = (index + 1).toString();
+            casesWithNumeration.push(element);
+        }
+        return casesWithNumeration;
+    }
+
+    showCaseUpdatedToast() {
+
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: "Success",
+                message: "Case updated",
+                variant: "success",
+            }),
+        );
+    }
+
+    showErrorToast(error) {
+
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: "Error updating record",
+                message: error.body.message,
+                variant: "error",
+            }),
+        );
+    }  
 }
