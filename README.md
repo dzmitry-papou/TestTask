@@ -12,7 +12,7 @@ The Twistellar Test Task details can be found in the [Twistellar Test Task Docum
 ### Credentials
 #### System Administrator:
 - Login: d.papou@farm.den
-- Password: NigraeBovis328
+- Password: NigraeBovis329
 
 #### Standard User:
 - Login: popownt8@gmail.com
